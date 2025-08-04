@@ -17,7 +17,6 @@ import { Archive } from './RDV/archive/archive';
 import { Historiques } from './RDV/historiques/historiques';
 import { MRDV } from './RDV/mrdv/mrdv';
 import { Avis } from './dashboard/avis/avis';
-import { RenderMode } from '@angular/ssr';
 
 export const routes: Routes = [
     {path : '', redirectTo: 'login', pathMatch: 'full' }, 
@@ -38,5 +37,5 @@ export const routes: Routes = [
     {path : "archive_RDV" , component : Archive} , 
     {path : "historique_RDV" , component : Historiques},
     {path : "mes_rendez_vous" , component : MRDV},
-    {path : "avis" , component : Avis , data : { RenderMode : 'direct' }},
+    {path : "avis" , component : Avis , data : { renderMode : 'direct' }},
 ];
