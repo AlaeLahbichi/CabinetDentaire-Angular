@@ -1,0 +1,222 @@
+<div id="app">
+
+    <app-navbar></app-navbar>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <div class="hero-section" id="home">
+            <div class="hero-content">
+                <h1 class="hero-title">Cabinet Dentaire Excellence</h1>
+                <p class="hero-subtitle">Votre sourire, notre passion - Des soins dentaires de qualité supérieure</p>
+                <button class="cta-button" onclick="scrollToSection('reservation')">Prendre Rendez-vous</button>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="services-section">
+            <h2 class="section-title">Nos Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">🦷</span>
+                    <h3 class="service-title">Soins Préventifs</h3>
+                    <p class="service-description">Détartrage, polissage et examens réguliers pour maintenir votre santé bucco-dentaire.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">✨</span>
+                    <h3 class="service-title">Esthétique Dentaire</h3>
+                    <p class="service-description">Blanchiment, facettes et soins esthétiques pour un sourire éclatant.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🔧</span>
+                    <h3 class="service-title">Orthodontie</h3>
+                    <p class="service-description">Appareils dentaires et aligneurs pour corriger l'alignement de vos dents.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🦴</span>
+                    <h3 class="service-title">Implantologie</h3>
+                    <p class="service-description">Implants dentaires et prothèses pour remplacer les dents manquantes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Doctor Section -->
+        <div class="doctor-section">
+            <div class="doctor-image">👨‍⚕️</div>
+            <div class="doctor-info">
+                <h2 class="doctor-name">Dr. Ahmed Benali</h2>
+                <p class="doctor-title">Chirurgien-Dentiste | Spécialiste en Implantologie</p>
+                <p class="doctor-description">
+                    Fort de 15 années d'expérience, le Dr. Benali s'est spécialisé dans l'implantologie et la chirurgie dentaire. 
+                    Diplômé de la Faculté de Médecine Dentaire de Rabat, il a complété sa formation par des stages 
+                    en Europe et aux États-Unis. Son approche combine expertise technique et écoute attentive pour 
+                    offrir des soins personnalisés à chaque patient.
+                </p>
+            </div>
+        </div>
+
+        <!-- Cabinet Description -->
+        <div class="services-section">
+            <h2 class="section-title">Notre Cabinet</h2>
+            <div class="service-card" style="max-width: none; margin: 0 auto;">
+                <span class="service-icon">🏥</span>
+                <h3 class="service-title">Un Environnement Moderne et Confortable</h3>
+                <p class="service-description">
+                    Notre cabinet dentaire, situé au cœur de Temara, vous accueille dans un environnement moderne, 
+                    chaleureux et entièrement équipé des dernières technologies. Nous avons conçu nos espaces pour 
+                    votre confort et votre bien-être, avec des salles de soins spacieuses, un équipement de pointe 
+                    et une équipe bienveillante. Notre philosophie repose sur l'excellence des soins, l'innovation 
+                    technologique et l'accompagnement personnalisé de chaque patient tout au long de son parcours de soins.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-section">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <p>📍 Avenue Hassan II, Temara</p>
+                <p>📞 +212 5 37 XX XX XX</p>
+                <p>✉️ contact@dentalcare.ma</p>
+            </div>
+            <div class="footer-column">
+                <h3>Horaires</h3>
+                <p>Lundi - Vendredi: 9h - 18h</p>
+                <p>Samedi: 9h - 13h</p>
+                <p>Dimanche: Fermé</p>
+            </div>
+            <div class="footer-column">
+                <h3>Suivez-nous</h3>
+                <a href="#">Facebook</a><br>
+                <a href="#">Instagram</a><br>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Cabinet Dentaire Excellence. Tous droits réservés.</p>
+        </div>
+    </div>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 25px rgba(29, 53, 87, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(29, 53, 87, 0.1)';
+            }
+        });
+
+        function animateOnScroll() {
+            const cards = document.querySelectorAll('.service-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            animateOnScroll();
+            
+            const icons = document.querySelectorAll('.service-icon');
+            icons.forEach((icon, index) => {
+                icon.style.animationDelay = `${index * 0.5}s`;
+            });
+        });
+
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const profilePic = document.querySelector('.profile-pic');
+            
+            if (!sidebar.contains(event.target) && !profilePic.contains(event.target) && sidebar.classList.contains('active')) {
+                toggleSidebar();
+            }
+        });
+
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement('span');
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+            circle.classList.add('ripple');
+
+            const ripple = button.getElementsByClassName('ripple')[0];
+            if (ripple) {
+                ripple.remove();
+            }
+
+            button.appendChild(circle);
+        }
+
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+                pointer-events: none;
+            }
+
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButton = document.querySelector('.cta-button');
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            
+            if (ctaButton) {
+                ctaButton.addEventListener('click', createRipple);
+                ctaButton.style.position = 'relative';
+                ctaButton.style.overflow = 'hidden';
+            }
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateX(5px)';
+                    }, 100);
+
+                    if (this.classList.contains('logout-link')) {
+                        e.preventDefault();
+                        if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                            console.log('Déconnexion...');
+                        }
+                    }
+                });
+
+                link.style.position = 'relative';
+                link.style.overflow = 'hidden';
+            });
+        });
+    </script>
+</div>

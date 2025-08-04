@@ -1,0 +1,225 @@
+
+        .main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            color: #1D3557;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #A8DADC, #B2F2BB);
+            border-radius: 2px;
+        }
+
+        /* Booking Form */
+        .booking-container {
+            background: #F1FAEE;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: #1D3557;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-icon {
+            margin-right: 0.5rem;
+            font-size: 1.4rem;
+            color: #A8DADC;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1D3557;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #CED4DA;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #FFFFFF;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #A8DADC;
+            box-shadow: 0 0 0 3px rgba(168, 218, 220, 0.2);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #CED4DA;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #FFFFFF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #A8DADC;
+            box-shadow: 0 0 0 3px rgba(168, 218, 220, 0.2);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .time-slot {
+            padding: 1rem;
+            border: 2px solid #CED4DA;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #FFFFFF;
+            width: 100%;
+        }
+
+        .time-slot:hover {
+            border-color: #A8DADC;
+            transform: translateY(-2px);
+        }
+
+        .time-slot.selected {
+            background: #A8DADC;
+            border-color: #A8DADC;
+            color: #FFFFFF;
+        }
+
+        .time-slot.unavailable {
+            background: #CED4DA;
+            color: #FFFFFF;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #A8DADC, #B2F2BB);
+            color: #1D3557;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(168, 218, 220, 0.4);
+        }
+
+        .btn-secondary {
+            background: #CED4DA;
+            color: #1D3557;
+        }
+
+        .btn-secondary:hover {
+            background: #1D3557;
+            color: #FFFFFF;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Confirmation Card */
+        .confirmation-card {
+            background: #B2F2BB;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            display: none;
+        }
+
+        .confirmation-card.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .confirmation-icon {
+            font-size: 3rem;
+            color: #1D3557;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+
+            .booking-container {
+                padding: 2rem 1rem;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }

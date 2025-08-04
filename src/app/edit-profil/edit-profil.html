@@ -1,0 +1,83 @@
+<div class="body">
+  <div class="container">
+    <div class="header">
+      <div class="profile-avatar" id="avatarInitials">👤</div>
+      <h1>Modifier le Profil</h1>
+      <p>Mettez à jour vos informations personnelles</p>
+    </div>
+
+    <div class="form-container">
+      <form id="profileForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label class="form-label" for="firstName">Prénom *</label>
+            <input type="text" id="firstName" class="form-input" placeholder="Entrez votre prénom" formControlName="firstName" required>
+            <span class="input-icon">👤</span>
+            <div *ngIf="editForm.get('firstName')?.invalid && (editForm.get('firstName')?.touched || editForm.get('firstName')?.dirty)" class="error-message">
+              <small *ngIf="editForm.get('firstName')?.errors?.['required']">Le prénom est requis.</small>
+              <small *ngIf="editForm.get('firstName')?.errors?.['minlength']">Le prénom doit contenir au moins 2 caractères.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="lastName">Nom de famille *</label>
+            <input type="text" id="lastName" class="form-input" placeholder="Entrez votre nom" formControlName="lastName" required>
+            <span class="input-icon">👤</span>
+            <div *ngIf="editForm.get('lastName')?.invalid && (editForm.get('lastName')?.touched || editForm.get('lastName')?.dirty)" class="error-message">
+              <small *ngIf="editForm.get('lastName')?.errors?.['required']">Le nom de famille est requis.</small>
+              <small *ngIf="editForm.get('lastName')?.errors?.['minlength']">Le nom doit contenir au moins 2 caractères.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email *</label>
+            <input type="email" id="email" class="form-input" placeholder="exemple@email.com" formControlName="email" readonly required>
+            <span class="input-icon">✉️</span>
+            <div *ngIf="editForm.get('email')?.invalid && (editForm.get('email')?.touched || editForm.get('email')?.dirty)" class="error-message">
+              <small *ngIf="editForm.get('email')?.errors?.['required']">L'email est requis.</small>
+              <small *ngIf="editForm.get('email')?.errors?.['email']">Format d'email invalide.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="phoneNumber">Téléphone</label>
+            <input type="tel" id="phoneNumber" class="form-input" placeholder="+212 6 66 66 66 66" formControlName="phone">
+            <span class="input-icon">📱</span>
+            <div *ngIf="editForm.get('phone')?.invalid && (editForm.get('phone')?.touched || editForm.get('phone')?.dirty)" class="error-message">
+              <small *ngIf="editForm.get('phone')?.errors?.['pattern']">Format de téléphone invalide.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="dateNaissance">Date de naissance</label>
+            <input type="date" id="dateNaissance" class="form-input" formControlName="date_naissance">
+            <span class="input-icon">🎂</span>
+            <div *ngIf="editForm.get('date_naissance')?.invalid && (editForm.get('date_naissance')?.touched || editForm.get('date_naissance')?.dirty)" class="error-message">
+              <small *ngIf="editForm.get('date_naissance')?.errors?.['required']">La date de naissance est requise.</small>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="address">Adresse</label>
+            <input type="text" id="address" class="form-input" placeholder="123 Rue Example, Ville, Code Postal" formControlName="adress">
+            <span class="input-icon">🏠</span>
+            <div *ngIf="editForm.get('adress')?.invalid && (editForm.get('adress')?.touched || editForm.get('adress')?.dirty)" class="error-message">
+              <small *ngIf="editForm.get('adress')?.errors?.['required']">L'adresse est requise.</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn btn-primary">
+            <span>Sauvegarder</span>
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="profil()">
+            <span>Annuler</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+    <div class="navbar">
+        <img src="images/logo.png" alt="logo of website">
+        <div class="profile-section">
+            <div class="profile-pic" (click)="toggleSidebar()">👤</div>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar" [class.active]="sidebarActive">
+        <div class="sidebar-header">
+            <h3>Profil Utilisateur</h3>
+            <button class="close-btn" (click)="toggleSidebar()">×</button>
+        </div>
+        <div class="user-info">
+            <div class="user-avatar">👤</div>
+            <h4 *ngIf="currentUser">{{ currentUser.email }}</h4>
+        </div>
+        
+        <div class="sidebar-links">
+            <a (click)="profil()" class="sidebar-link">
+                <span class="link-icon">👤</span>
+                <span>Mon Profil</span>
+            </a>
+            <a href="/mes_rendez_vous" class="sidebar-link" *ngIf="currentUser && currentUser.role == 'Patient'">
+                <span class="link-icon">📅</span>
+                <span>Mes Rendez-vous</span>
+            </a>
+            <a href="/reservation" class="sidebar-link" *ngIf="currentUser && currentUser.role == 'Patient'">
+                <span class="link-icon">📅 </span>
+                <span>Réserver une date</span>
+            </a>
+            <a href="/dashboard" class="sidebar-link" *ngIf="currentUser && currentUser.role != 'Patient' ">
+                <span class="link-icon">⚙️</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="/home" class="sidebar-link">
+                <span class="link-icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="/contact" class="sidebar-link">
+                <span class="link-icon">📞</span>
+                <span>Contact</span>
+            </a>
+            <a class="sidebar-link logout-link" (click)="logout()">
+                <span class="link-icon">🚪</span>
+                <span>Déconnexion</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>

@@ -1,0 +1,88 @@
+
+    <div class="container">
+        <app-sidebar [animation]="LinkActive"></app-sidebar>
+        <main class="main-content">
+            <header class="header">
+                <h1>Gestion des Utilisateurs</h1>
+                <p>Gérez et surveillez tous les utilisateurs de votre plateforme</p>
+            </header>
+
+            <div class="content">
+                <section class="filters">
+                    <h2 class="filters-title">🔍 Filtres de recherche</h2>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label" for="searchInput">Rechercher par nom ou email</label>
+                            <input type="text" id="searchInput" class="search-input" [(ngModel)]="searchText" (input)="filterUsers()" placeholder="Tapez un nom ou email...">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label" for="roleSelect">Filtrer par rôle</label>
+                            <select id="roleSelect" class="role-select" [(ngModel)]="selectedRole" (change)="filterUsers()">
+                                <option value="Not Defined">Tous les rôles</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Médecin">Médecin</option>
+                                <option value="Secrétaire">Secrétaire</option>
+                                <option value="Patient">Patient</option>
+                            </select>
+                        </div>
+                        <button class="clear-btn" (click)="clearFilters()">
+                            Effacer les filtres
+                        </button>
+                    </div>
+                </section>
+
+                <section class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalUsers">{{TotalUser}}</div>
+                        <div class="stat-label">Total Utilisateurs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="activeUsers">{{ActifUser}}</div>
+                        <div class="stat-label">Utilisateurs Actifs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="filteredCount">{{InActifUser}}</div>
+                        <div class="stat-label">Utilisateurs Inactifs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="adminCount">{{PatientUser}}</div>
+                        <div class="stat-label">Patients</div>
+                    </div>
+                </section>
+
+                <section class="users-grid" id="usersGrid">
+                    <div class="user-card" *ngFor="let user of filteredUsers">
+                        <div class="user-header">
+                            <div class="user-avatar">👤</div>
+                            <div class="user-info">
+                                <h3>{{user?.lastName}} {{user?.firstName}}</h3>
+                                <div class="user-email">{{user?.email}}</div>
+                            </div>
+                        </div>
+                        <div class="user-details">
+                            <span class="user-role role-${user.role}">
+                                {{user?.role}}
+                            </span>
+                            <div class="user-status status-${user.status}">
+                                {{user.status ? "🟢 Actif" : "🔴 Inactif" }}
+                         </div>
+                        </div>
+                        <div class="user-actions">
+                            <button class="action-btn btn-edit" (click)="Activer(user.id)" *ngIf="!user.status">
+                                🟢 Activer
+                            </button>
+                            <button class="action-btn btn-delete" (click)="Delete(user.email)">
+                                🗑️ Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="no-results" id="noResults" style="display: none;">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>Aucun utilisateur trouvé</h3>
+                    <p>Essayez de modifier vos critères de recherche</p>
+                </div>
+            </div>
+        </main>
+    </div>

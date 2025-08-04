@@ -1,0 +1,125 @@
+<div class="register-container">
+  <div class="register-card">
+    <div class="header">
+      <div class="logo-section">
+        <div class="logo-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C13.1 2 14 2.9 14 4V8C14 9.1 13.1 10 12 10C10.9 10 10 9.1 10 8V4C10 2.9 10.9 2 12 2Z" fill="#1D3557"/>
+            <path d="M12 14C15.31 14 18 16.69 18 20V22H6V20C6 16.69 8.69 14 12 14Z" fill="#A8DADC"/>
+          </svg>
+        </div>
+        <h1>Cabinet Dentaire</h1>
+      </div>
+      <h2>Créer un compte</h2>
+      <p>Rejoignez notre équipe ou inscrivez-vous comme patient</p>
+    </div>
+
+    <div class="success-message" *ngIf="showSuccessMessage">
+      <div class="success-icon">✓</div>
+      <p>Inscription réussie ! Bienvenue dans notre cabinet.</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName" class="form-label">Nom *</label>
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            class="form-input"
+            [class.error]="isFieldInvalid('firstName')"
+            placeholder="Votre nom"
+          />
+          <div class="error-message" *ngIf="isFieldInvalid('firstName')">
+            {{ getErrorMessage('firstName') }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName" class="form-label">Prénom *</label>
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            class="form-input"
+            [class.error]="isFieldInvalid('lastName')"
+            placeholder="Votre prénom"
+          />
+          <div class="error-message" *ngIf="isFieldInvalid('lastName')">
+            {{ getErrorMessage('lastName') }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email *</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-input"
+          [class.error]="isFieldInvalid('email')"
+          placeholder="votre.email@exemple.com"
+        />
+        <div class="error-message" *ngIf="isFieldInvalid('email')">
+          {{ getErrorMessage('email') }}
+        </div>
+      </div>
+
+        <div class="form-group">
+        <label for="password" class="form-label">Password *</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-input"
+          [class.error]="isFieldInvalid('password')"
+          placeholder="Password"
+        />
+        <div class="error-message" *ngIf="isFieldInvalid('password')">
+          {{ getErrorMessage('password') }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="role" class="form-label">Rôle *</label>
+        <select
+          id="role"
+          formControlName="role"
+          class="form-select"
+          [class.error]="isFieldInvalid('role')"
+        >
+          <option value="" disabled>Sélectionnez votre rôle</option>
+          <option *ngFor="let role of roles" [value]="role.value">
+            {{ role.label }}
+          </option>
+        </select>
+        <div class="error-message" *ngIf="isFieldInvalid('role')">
+          {{ getErrorMessage('role') }}
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="isSubmitting"
+        [class.loading]="isSubmitting"
+      >
+        <span *ngIf="!isSubmitting">S'inscrire</span>
+        <span *ngIf="isSubmitting" class="loading-text">
+          <div class="spinner"></div>
+          Inscription en cours...
+        </span>
+      </button>
+
+      <div class="login-link">
+        <p>Vous avez déjà un compte ? 
+          <a href="/login" class="link">Se connecter</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

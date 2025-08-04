@@ -1,0 +1,95 @@
+<div class="container">
+    <app-sidebar [animation]="LinkActive"></app-sidebar>
+        <main class="main-content">
+            <header class="header">
+                <h1>Gestion des Rendez-vous</h1>
+                <p>Tableau de bord pour gérer vos rendez-vous</p>
+            </header>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fas fa-calendar-day"></i></div>
+    <div class="stat-number">{{ todayAppointmentsCount }}</div>
+    <div class="stat-label">RDV Aujourd'hui</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+    <div class="stat-number">{{ countTodayConfirmed }}</div>
+    <div class="stat-label">RDV Confirmés</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+    <div class="stat-number">{{ caceled }}</div>
+    <div class="stat-label">RDV Annulés</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fas fa-calendar-day"></i></div>
+    <div class="stat-number">{{ passed }}</div>
+    <div class="stat-label">RDV Passés</div>
+  </div>
+  <div class="stat-card" *ngIf="currentUser && currentUser.role == 'Médecin'">
+    <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
+    <div class="stat-number">{{ total_user }}</div>
+    <div class="stat-label">Total Clients</div>
+  </div>
+</div>
+
+<div class="appointments-section">
+  <div class="section-header">
+    <h2 class="section-title">Rendez-vous</h2>
+  </div>
+
+  <table class="appointments-table">
+    <thead>
+      <tr>
+        <th style="text-align: center;">ID</th>
+        <th style="text-align: center;">Client</th>
+        <th style="text-align: center;">Date & Heure</th>
+        <th style="text-align: center;">Type de visite</th>
+        <th style="text-align: center;">Statut</th>
+        <th style="text-align: center;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let apt of reservations" >
+        <td style="text-align: center;">#RES-{{ apt.id }}</td>
+        <td>
+          <div style="display: flex;justify-content: center;align-items: center;">
+            <strong>{{ apt.user.lastName }} {{ apt.user.firstName }}</strong><br>
+            <small style="color: #CED4DA;">{{ apt.user.email }}</small>
+          </div>
+        </td>
+        <td>
+          <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+            <strong>{{ apt.localDate }}</strong><br>
+            <small style="color: #CED4DA;">{{ apt.localTime }}</small>
+          </div>
+        </td>
+        <td style="text-align: center;">{{ apt.typeVisite }}</td>
+        <td style="text-align: center;">{{ apt.status }}</td>
+        <td style="display: flex;justify-content: center;align-items: center;">
+          <div class="action-buttons">
+            <button class="btn btn-edit" (click)="Confirm_Reservation(apt.id)" *ngIf="apt.status == 'pending'" >
+              ✔️ Confirmer
+            </button>
+            <button class="btn btn-edit" (click)="Finaliser_Reservation(apt.id)" *ngIf="apt.status == 'reserved' ">
+              ✔️ Passer
+            </button>
+            <button class="btn btn-cancel"  (click)="Cancel_Reservation(apt.id)" *ngIf=" apt.status !== 'canceled' && apt.status !== 'passed'">
+              <i class="fas fa-times"></i> Annuler
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="reservations.length === 0">
+        <td colspan="6" style="text-align:center; padding:40px; color:#CED4DA;">
+          <i class="fas fa-search" style="font-size:48px; margin-bottom:15px; display:block;"></i>
+          Aucun rendez-vous trouvé
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+   

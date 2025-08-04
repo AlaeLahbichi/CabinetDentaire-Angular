@@ -1,0 +1,88 @@
+    <app-navbar></app-navbar>
+    <div class="container" style="margin-top: 10rem;">
+        <div class="contact-wrapper">
+            <div class="contact-header">
+                <h1>Contactez-nous</h1>
+                <p>Nous sommes là pour vous aider. N'hésitez pas à nous contacter pour toute question ou demande.</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div class="info-text">
+                            <h3>Email</h3>
+                            <p>cabinetDentaire@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-text">
+                            <h3>Téléphone</h3>
+                            <p>+212 6 66 66 66 66</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-text">
+                            <h3>Adresse</h3>
+                            <p>123 Rue Agdal<br>11000 Rabat, Maroc</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">🕒</div>
+                        <div class="info-text">
+                            <h3>Horaires</h3>
+                            <p>Lun - Ven: 9h00 - 18h00<br>Sam - Dim: Fermé</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                        <div id="messageContainer"></div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Prénom *</label>
+                                <input type="text" id="firstName" formControlName="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Nom *</label>
+                                <input type="text" id="lastName" formControlName="lastName"  required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" formControlName="email"  required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Objet *</label>
+                            <select id="subject" formControlName="objet" required>
+                                <option value="Not defined" selected>Sélectionnez un sujet</option>
+                                <option value="Support Technique">Support technique</option>
+                                <option value="Demande d'information">Demande d'information</option>
+                                <option value="Problème de réservation">Problème de réservation</option>
+                                <option value="Feedback">Commentaires/Suggestions</option>
+                                <option value="Other">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" formControlName="message" placeholder="Décrivez votre demande en détail..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

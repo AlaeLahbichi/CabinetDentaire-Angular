@@ -1,0 +1,53 @@
+
+    <div class="container">
+        <div class="header">
+            <h1>Réclamation #REC-{{ reclamation?.id }}</h1>
+            <span class="status-badge">{{ reclamation?.status }}</span>
+        </div>
+
+        <div class="content">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">Réclamateur</div>
+                    <div class="info-value">{{ reclamation?.lastName }} {{ reclamation?.firstName }}</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Email</div>
+                    <div class="info-value">{{ reclamation?.email }}</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Date de création</div>
+                    <div class="info-value">{{ formatDate(reclamation?.dateCreation) }}</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">Catégorie</div>
+                    <div class="info-value">{{ reclamation?.objet }}</div>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h3>Description de la réclamation</h3>
+                <div class="description-text">
+                    {{ reclamation?.message }}
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-back" (click)="Retour()">
+                ← Retour à la liste
+            </button>
+            
+            <div class="action-buttons" *ngIf="reclamation?.status == 'Pending'">
+                <button class="btn btn-reject" (click)="Canceled(reclamation?.id)" >
+                    ✕ Refuser
+                </button>
+                <button class="btn btn-accept" (click)="Resolved(reclamation?.id)" >
+                    ✓ Accepter
+                </button>
+            </div>
+        </div>
+    </div>

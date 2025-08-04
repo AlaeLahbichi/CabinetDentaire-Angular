@@ -1,0 +1,53 @@
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+        <button class="mobile-menu-btn" (click)="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="sidebar" id="sidebar" [class.open]="isSidebarOpen">
+            <div class="logo-section" style="background-color: transparent;">
+                <div class="logo" (click)="Home()" style="cursor: pointer;"><img (click)="Home()" src="images/logo.png" alt="logo of company" style="width: 110px;"></div>
+                <div class="company-name">Cabinet Dentaire</div>
+                <div class="company-subtitle">Gestion RDV</div>
+            </div>
+            
+            <div class="nav-menu">
+                <a *ngIf="currentUser?.role != 'Patient' " href="/dashboard" class="nav-item" [class.active]="animation == 'RDV' ">
+                    <i class="fas fa-calendar-alt"></i>
+                    Calendrier des rendez-vous
+                </a>
+                <a *ngIf="currentUser?.role == 'Patient' " href="/mes_rendez_vous" class="nav-item" [class.active]="animation == 'MRDV' ">
+                    <i class="fas fa-calendar-alt"></i>
+                    Mes rendez-vous
+                </a>
+                <a *ngIf="currentUser?.role != 'Patient' " href="/archive_RDV" class="nav-item" [class.active]="animation == 'HRDV' ">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Archives des consultations
+                </a>
+                <a *ngIf="currentUser?.role == 'Patient' " href="/historique_RDV" class="nav-item" [class.active]="animation == 'HMRDV' ">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Historiques de mes rendez-vous
+                </a>
+                <a *ngIf="currentUser?.role != 'Patient'" href="/membres" class="nav-item" [class.active]="animation == 'membres'">
+                    <i class="fas fa-users"></i>
+                    Membres
+                </a>
+                <a (click)="Profil()" class="nav-item" [class.active]="animation == 'profil'">
+                    <i class="fas fa-user"></i>
+                    Mon Profil
+                </a>
+                <a href="/avis" class="nav-item" [class.active]="animation == 'avis'">
+                    <i class="fa-solid fa-star"></i>
+                    Avis
+                </a>
+                <a *ngIf="currentUser?.role != 'Patient' " href="/reclamation" class="nav-item" [class.active]="animation == 'reclamations' ">
+                    <i class="fa-solid fa-headphones"></i>
+                    Réclamations
+                </a>
+                <a (click)="LogOut()" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
+                </a>
+            </div>
+        </nav>

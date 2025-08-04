@@ -1,0 +1,342 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFFFFF;
+            color: #1D3557;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Main Content */
+        .main-container {
+            margin-left: 280px;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-container.full-width {
+            margin-left: 0;
+        }
+
+        .content-header {
+            background: #F1FAEE;
+            padding: 30px;
+            border-bottom: 1px solid #CED4DA;
+        }
+
+        .content-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1D3557;
+            margin-bottom: 10px;
+        }
+
+        .content-subtitle {
+            color: #CED4DA;
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        /* Controls */
+        .controls {
+            background: #F1FAEE;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(29, 53, 87, 0.08);
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 45px;
+            border: 2px solid #CED4DA;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #B2F2BB;
+            box-shadow: 0 0 0 3px rgba(178, 242, 187, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #CED4DA;
+            font-size: 1.1rem;
+        }
+
+        .filter-select {
+            padding: 12px 16px;
+            border: 2px solid #CED4DA;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #B2F2BB;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #B2F2BB;
+            color: #1D3557;
+        }
+
+        .btn-primary:hover {
+            background: #9AE6A8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(178, 242, 187, 0.4);
+        }
+
+        /* Claims Table */
+        .claims-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 25px rgba(29, 53, 87, 0.1);
+        }
+
+        .table-header {
+            background: #1D3557;
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .claims-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .claims-table th {
+            background: #F1FAEE;
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #1D3557;
+            font-size: 0.95rem;
+            border-bottom: 2px solid #CED4DA;
+        }
+
+        .claims-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #CED4DA;
+            transition: background-color 0.3s ease;
+        }
+
+        .claims-table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .claims-table tbody tr:hover {
+            background: #F1FAEE;
+            transform: scale(1.01);
+            box-shadow: 0 2px 10px rgba(29, 53, 87, 0.1);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .status-pending {
+            background: #FFF3CD;
+            color: #856404;
+        }
+
+        .status-resolved {
+            background: #D1EDC1;
+            color: #0F5132;
+        }
+
+        .status-urgent {
+            background: #FFE6E6;
+            color: #721C24;
+        }
+
+        /* Priority Indicator */
+        .priority-high {
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+
+        .priority-medium {
+            color: #F39C12;
+            font-weight: 500;
+        }
+
+        .priority-low {
+            color: #B2F2BB;
+            font-weight: 500;
+        }
+
+        /* Action Buttons */
+        .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 2px;
+        }
+
+        .btn-view {
+            background: #B2F2BB;
+            color: #1D3557;
+        }
+
+        .btn-edit {
+            background: #CED4DA;
+            color: #1D3557;
+        }
+
+        .btn-delete {
+            background: #FF6B6B;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                margin-left: 0;
+            }
+
+            .content-header {
+                padding: 80px 20px 30px 20px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .content-title {
+                font-size: 1.8rem;
+            }
+
+            .controls-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                min-width: auto;
+            }
+
+            .claims-table {
+                font-size: 0.9rem;
+            }
+
+            .claims-table th,
+            .claims-table td {
+                padding: 12px 8px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-title {
+                font-size: 1.5rem;
+            }
+
+            .claims-table th,
+            .claims-table td {
+                padding: 10px 6px;
+                font-size: 0.8rem;
+            }
+
+            .action-btn {
+                padding: 6px 8px;
+                font-size: 0.8rem;
+            }
+        }
+
+
+        /* Animation for loading */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .slide-in {
+            animation: slideIn 0.4s ease-out;
+        }

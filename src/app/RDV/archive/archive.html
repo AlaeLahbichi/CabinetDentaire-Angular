@@ -1,0 +1,77 @@
+
+    <div class="container">
+        <app-sidebar [animation]="LinkActive"></app-sidebar>
+        <div class="main-content">
+            <div class="header">
+                <h2>Archives des Rendez-vous</h2>
+                <p>Gérez et consultez l'historique de tous les rendez-vous</p>
+            </div>
+
+            <div class="filters-section">
+                <h3 class="filters-title">🔍 Filtres de recherche</h3>
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label for="searchId">ID Rendez-vous</label>
+                        <input type="text" id="searchId" [(ngModel)]="searchText" (input)="applyFilters()" placeholder="Rechercher par ID...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="subjectFilter">Type Visite</label>
+                        <select id="subjectFilter" [(ngModel)]="subjectFilter" (change)="applyFilters()">
+                            <option value="Not Defined">Tous les sujets</option>
+                            <option value="consultation">Consultation générale</option>
+                            <option value="controle">Visite de contrôle</option>
+                            <option value="urgence">Consultation urgente</option>
+                            <option value="suivi">Suivi médical</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="statusFilter">Statut</label>
+                        <select id="statusFilter" [(ngModel)]="statusFilter" (change)="applyFilters()">
+                            <option value="Not Defined">Tous les statuts</option>
+                            <option value="passed">Passed</option>
+                            <option value="canceled">Canceled</option>
+                        </select>
+                    </div>
+                    <button class="reset-btn" (click)="resetFilters()">🔄 Reset</button>
+                </div>
+            </div>
+
+            <div class="appointments-grid" id="appointmentsGrid">
+                <div *ngFor="let reservation of reservations" class="appointment-card status-{{reservation?.status}}">
+                    <div class="appointment-header">
+                        <span class="appointment-id">{{reservation?.id}}</span>
+                        <span class="appointment-status status-{{reservation?.status}}">
+                            {{reservation?.status}}
+                        </span>
+                    </div>
+                    <div class="appointment-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Patient</span>
+                            <span class="detail-value">{{reservation?.user.lastName}} {{reservation?.user.firstName}}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Date</span>
+                            <span class="detail-value">{{reservation?.localDate}}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Heure</span>
+                            <span class="detail-value">{{reservation?.localTime}}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Sujet</span>
+                            <span class="detail-value">{{reservation?.typeVisite}}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Statut</span>
+                            <span class="detail-value">{{reservation?.status}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="no-results" id="noResults" style="display: none;">
+                <h3>Aucun rendez-vous trouvé</h3>
+                <p>Essayez de modifier vos critères de recherche</p>
+            </div>
+        </div>
+    </div>
